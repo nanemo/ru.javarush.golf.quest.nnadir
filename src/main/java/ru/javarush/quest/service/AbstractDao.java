@@ -7,9 +7,9 @@ public abstract class AbstractDao {
     public Connection connect() throws Exception {
         Class.forName("com.mysql.cj.jdbc.Driver");
 
-        String url = "jdbc:mysql://localhost:3306/quest_nadir";
+        String url = "jdbc:mysql://db:3306/quest_nadir";
         String username = "root";
-        String password = "12345";
+        String password = "root";
 
         return DriverManager.getConnection(url, username, password);
     }

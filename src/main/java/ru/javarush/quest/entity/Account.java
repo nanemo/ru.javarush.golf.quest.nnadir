@@ -5,6 +5,9 @@ public class Account {
     private final String name;
     private final String login;
     private String password;
+    private int playCount;
+    private int winCount;
+    private int gameOverCount;
 
     public Account(Long id, String name, String login, String password) {
         this.id = id;
@@ -29,6 +32,30 @@ public class Account {
         this.id = id;
     }
 
+    public int getPlayCount() {
+        return playCount;
+    }
+
+    public void setPlayCount(int playCount) {
+        this.playCount = playCount;
+    }
+
+    public int getWinCount() {
+        return winCount;
+    }
+
+    public void setWinCount(int winCount) {
+        this.winCount = winCount;
+    }
+
+    public int getGameOverCount() {
+        return gameOverCount;
+    }
+
+    public void setGameOverCount(int gameOverCount) {
+        this.gameOverCount = gameOverCount;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -49,16 +76,6 @@ public class Account {
         result = 31 * result + login.hashCode();
         result = 31 * result + password.hashCode();
         return result;
-    }
-
-    @Override
-    public String toString() {
-        return "Account{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
-                '}';
     }
 
 }

@@ -1,27 +1,29 @@
 package ru.javarush.quest.impl;
 
 import ru.javarush.quest.entity.Answer;
+import ru.javarush.quest.service.AbstractAnswer;
 import ru.javarush.quest.service.AbstractDao;
-import ru.javarush.quest.service.AnswerDao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class AnswerImpl extends AbstractDao implements AnswerDao {
+public class AnswerDao extends AbstractDao implements AbstractAnswer {
     @Override
-    public Answer getAnswersInOrder(int count) {
+    public Answer getAnswersInOrder(Long id) {
 
         Answer answer = null;
         try (Connection connection = connect();
              Statement stmt = connection.createStatement()) {
-            stmt.execute("SELECT * from answers where id=" + count);
+            stmt.execute("SELECT * from answers where id=" + id);
             ResultSet resultSet = stmt.getResultSet();
 
             while (resultSet.next()) {
                 answer = (getAnswer(resultSet));
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -30,12 +32,11 @@ public class AnswerImpl extends AbstractDao implements AnswerDao {
     }
 
     @Override
-    public String wrongAnswerDescription(int count) {
+    public String getWrongAnswerDescription(Long id) {
         String wrongAnswerDescription = null;
         try (Connection connection = connect();
              Statement stmt = connection.createStatement()) {
-            stmt.execute("SELECT d.description FROM description_for_wrong_answer d LEFT JOIN answers " +
-                    "ON answers.id = d.id where d.id = " + count);
+            stmt.execute("SELECT * FROM description_for_wrong_answer d where d.id = " + id);
             ResultSet rs = stmt.getResultSet();
             while (rs.next()) {
                 wrongAnswerDescription = getWrongAnswerDescription(rs);

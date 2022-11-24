@@ -2,12 +2,12 @@ package ru.javarush.quest.impl;
 
 import ru.javarush.quest.entity.Account;
 import ru.javarush.quest.service.AbstractDao;
-import ru.javarush.quest.service.LoginDao;
+import ru.javarush.quest.service.AbstractLogin;
 
 import java.sql.*;
 
 
-public class LoginImpl extends AbstractDao implements LoginDao {
+public class LoginDao extends AbstractDao implements AbstractLogin {
 
     @Override
     public boolean registerUser(String name, String login, String password) {
