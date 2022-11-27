@@ -10,15 +10,17 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class QuestionDao extends AbstractDao implements AbstractQuestion {
     @Override
     public Question getNextQuestion(Long id) {
+        ResultSet rs = null;
         Question question = null;
         try (Connection connection = connect();
              Statement stmt = connection.createStatement()) {
             stmt.execute("SELECT * from questions where id=" + id);
-            ResultSet rs = stmt.getResultSet();
+            rs = stmt.getResultSet();
 
             while (rs.next()) {
                 question = (getQuestion(rs));
@@ -26,6 +28,12 @@ public class QuestionDao extends AbstractDao implements AbstractQuestion {
 
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            try {
+                Objects.requireNonNull(rs).close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
         return question;
@@ -33,17 +41,24 @@ public class QuestionDao extends AbstractDao implements AbstractQuestion {
 
     @Override
     public int getQuestionSize() {
+        ResultSet rs = null;
         List<Question> question = new ArrayList<>();
         try (Connection connection = connect();
              Statement stmt = connection.createStatement()) {
             stmt.execute("SELECT * from questions");
-            ResultSet rs = stmt.getResultSet();
+            rs = stmt.getResultSet();
 
             while (rs.next()) {
                 question.add(getQuestion(rs));
             }
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            try {
+                Objects.requireNonNull(rs).close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return question.size();
     }

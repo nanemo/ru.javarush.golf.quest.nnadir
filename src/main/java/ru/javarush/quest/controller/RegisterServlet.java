@@ -1,6 +1,5 @@
 package ru.javarush.quest.controller;
 
-import lombok.extern.slf4j.Slf4j;
 import ru.javarush.quest.service.Context;
 
 import javax.servlet.ServletException;
@@ -10,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@Slf4j
 @WebServlet(name = "RegisterServlet", value = "/register")
 public class RegisterServlet extends HttpServlet {
     private final Context context = Context.getDaoControllerInstance();
@@ -21,12 +19,10 @@ public class RegisterServlet extends HttpServlet {
         String login = req.getParameter("login");
         String password = req.getParameter("password");
 
-        if (accountRegister(accountName, login, password)){
-            log.error("account not registered yet: login={}, password={}", login, password);
+        if (accountRegister(accountName, login, password)) {
             req.setAttribute("account_name", accountName);
             req.getRequestDispatcher("/login").forward(req, resp);
         } else {
-            log.error("account already registered login={}, password={}", login, password);
             resp.sendRedirect("/register");
         }
     }

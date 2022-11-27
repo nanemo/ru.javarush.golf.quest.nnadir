@@ -1,6 +1,51 @@
 .bg {
     border: 1px solid black;
-    object-fit: contain;
+    object-fit: fill;
+    background-size: 100%;
+    width: 100%;
+    height: 600px;
     background-repeat: no-repeat;
-
+    background-image: url('/img/hi_human.jpg');
 }
+
+.bg_first_page {
+    border: 1px solid red;
+    object-fit: fill;
+    background-size: 100%;
+    width: 100%;
+    height: 600px;
+    background-repeat: no-repeat;
+    background-image: url('/img/meeting_aliens.jpg');
+}
+
+.bg_win_page {
+    border: 1px solid red;
+    object-fit: fill;
+    background-size: 100%;
+    width: 100%;
+    height: 600px;
+    background-repeat: no-repeat;
+    background-image: url('/img/win_page.jpg');
+}
+
+.game_over_page {
+    border: 1px solid red;
+    object-fit: fill;
+    background-size: 100%;
+    width: 100%;
+    height: 600px;
+    background-repeat: no-repeat;
+    background-image: url('/img/game_over.jpg');
+}
+
+.register {
+    border-bottom: 1px solid black;
+    width: 100%;
+    height: 100%;
+}
+
+td, th {
+    text-align: center;
+    margin: auto;
+}
+

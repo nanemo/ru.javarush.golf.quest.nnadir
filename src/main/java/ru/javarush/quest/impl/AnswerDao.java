@@ -8,24 +8,29 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Objects;
 
 public class AnswerDao extends AbstractDao implements AbstractAnswer {
     @Override
     public Answer getAnswersInOrder(Long id) {
-
+        ResultSet rs = null;
         Answer answer = null;
         try (Connection connection = connect();
              Statement stmt = connection.createStatement()) {
             stmt.execute("SELECT * from answers where id=" + id);
-            ResultSet resultSet = stmt.getResultSet();
+            rs = stmt.getResultSet();
 
-            while (resultSet.next()) {
-                answer = (getAnswer(resultSet));
+            while (rs.next()) {
+                answer = (getAnswer(rs));
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            try {
+                Objects.requireNonNull(rs).close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         return answer;
@@ -33,16 +38,23 @@ public class AnswerDao extends AbstractDao implements AbstractAnswer {
 
     @Override
     public String getWrongAnswerDescription(Long id) {
+        ResultSet rs = null;
         String wrongAnswerDescription = null;
         try (Connection connection = connect();
              Statement stmt = connection.createStatement()) {
             stmt.execute("SELECT * FROM description_for_wrong_answer d where d.id = " + id);
-            ResultSet rs = stmt.getResultSet();
+            rs = stmt.getResultSet();
             while (rs.next()) {
                 wrongAnswerDescription = getWrongAnswerDescription(rs);
             }
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            try {
+                Objects.requireNonNull(rs).close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return wrongAnswerDescription;
     }
