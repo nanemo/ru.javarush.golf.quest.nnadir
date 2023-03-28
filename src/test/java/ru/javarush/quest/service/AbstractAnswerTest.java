@@ -29,10 +29,9 @@ class AbstractAnswerTest {
         }
     }
 
-    @ParameterizedTest
-    @NullSource
-    void testIfIdIsNullWhenGetAnswerInOrder(Long id) {
-        assertNull(abstractAnswer.getAnswersInOrder(id));
+    @Test
+    void testIfIdIsNullWhenGetAnswerInOrder() {
+        assertNull(abstractAnswer.getAnswersInOrder(null));
     }
 
     @Test

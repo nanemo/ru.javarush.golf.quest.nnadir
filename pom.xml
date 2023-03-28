@@ -20,7 +20,6 @@
         <javax.servlet.jsp-api.version>2.3.3</javax.servlet.jsp-api.version>
         <jstl.version>1.2</jstl.version>
         <mysql-connector.version>8.0.28</mysql-connector.version>
-        <docker.version>0.40.2</docker.version>
         <junit.params.version>5.9.0</junit.params.version>
         <war-plugin.version>3.3.2</war-plugin.version>
     </properties>

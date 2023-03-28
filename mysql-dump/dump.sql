@@ -30,31 +30,31 @@ CREATE TABLE `description_for_wrong_answer`
 );
 
 INSERT INTO answers (correct_answer, wrong_answer)
-VALUES ("Received a call", "Rejected the call");
+VALUES ('Received a call', 'Rejected the call');
 
 INSERT INTO answers (correct_answer, wrong_answer)
-VALUES ("Climb up to the bridge", "Refuse to climb the bridge");
+VALUES ('Climb up to the bridge', 'Refuse to climb the bridge');
 
 INSERT INTO answers (correct_answer, wrong_answer)
-VALUES ("Tell the truth about yourself", "Lie about yourself");
+VALUES ('Tell the truth about yourself', 'Lie about yourself');
 
 INSERT INTO questions (question)
-VALUES ("You''ve lost your memory. Take the challenge?");
+VALUES ('You''ve lost your memory. Take the challenge?');
 
 INSERT INTO questions (question)
-VALUES ("You accepted the challenge. Are you going up to the captain''s bridge?");
+VALUES ('You accepted the challenge. Are you going up to the captain''s bridge?');
 
 INSERT INTO questions (question)
-VALUES ("You have climbed the bridge. Who are you?");
+VALUES ('You have climbed the bridge. Who are you?');
 
 INSERT INTO description_for_wrong_answer (description)
-VALUES ("You rejected the call. Game Over");
+VALUES ('You rejected the call. Game Over');
 
 INSERT INTO description_for_wrong_answer (description)
-VALUES ("You didn''t negotiate. Game Over");
+VALUES ('You didn''t negotiate. Game Over');
 
 INSERT INTO description_for_wrong_answer (description)
-VALUES ("Your lies have been exposed. Game Over");
+VALUES ('Your lies have been exposed. Game Over');
 
 INSERT INTO accounts (account_name, login, password)
-VALUES ("Admin", "admin", "admin");
+VALUES ('Admin', 'admin', 'admin');
